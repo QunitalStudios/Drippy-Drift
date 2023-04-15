@@ -27,37 +27,37 @@ public class CameraAScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7)
+      /*if (other.gameObject.layer == 7)
         {
             otherr = other;
             iffollow = false;
             transform.LookAt(follow);
-        }
+        }*/
     }
 
     private void FixedUpdate()
     {
-        if (iffollow)
-        {
-            if (attachedVehicle.GetComponent<CarController>().isGoingForward())
-            {
-                camerafollowForward();
-            }
-            else
-            {
-                camerafollowBackward();
-            }
-        }
-        else
-        {
-            if (otherr != null)
-            {
-                if (transform.position.y < 6.8f)
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, otherr.transform.position.y + 7f, transform.position.z + 0.7f), 1f * Time.deltaTime);
-            }
-            transform.LookAt(follow);
-        }
-
+        /* if (iffollow)
+         {
+             if (attachedVehicle.GetComponent<CarController>().isGoingForward())
+             {
+                 camerafollowForward();
+             }
+             else
+             {
+                 camerafollowBackward();
+             }
+         }
+         else
+         {
+             if (otherr != null)
+             {
+                 if (transform.position.y < 6.8f)
+                     transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, otherr.transform.position.y + 7f, transform.position.z + 0.7f), 1f * Time.deltaTime);
+             }
+             transform.LookAt(follow);
+         }*/
+        camerafollowForward();
     }
 
     private void camerafollowForward()
