@@ -217,10 +217,10 @@ public class CarController : MonoBehaviour
     private void GetInput()
     {
         // Steering Input
-        horizontalInput = joystick.Horizontal;
+        horizontalInput = Input.GetAxis("Horizontal");
 
         // Acceleration Input
-        verticalInput = joystick.Vertical;
+        verticalInput = Input.GetAxis("Vertical");
 
         // Breaking Input
         isBreaking = Input.GetKey(KeyCode.Space);
