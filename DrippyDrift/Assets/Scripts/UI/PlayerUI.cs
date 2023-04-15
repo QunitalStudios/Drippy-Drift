@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
-    public CarController playerCont;
+    public CarControllerTEST playerCont;
     public TMP_Text currentScore;
     public TMP_Text currentMultipier;
     public TMP_Text currentSpeed;
