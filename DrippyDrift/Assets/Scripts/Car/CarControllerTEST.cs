@@ -121,7 +121,7 @@ public class CarControllerTEST : MonoBehaviour
 
     private void AddScore()
     {
-        if (((slipAngle >= 15) && (slipAngle <= 90)) && isGoingForward() && cameraScript.iffollow == true && isGroundedRL && isGroundedRR && currentSpeed > 1)
+        if (((slipAngle >= 15) && (slipAngle <= 90)) && isGoingForward() && cameraScript.iffollow == true && isGroundedRL && isGroundedRR && currentSpeed > 5)
         {
             if (isGroundedRL && isGroundedRR)
             {
@@ -209,7 +209,7 @@ public class CarControllerTEST : MonoBehaviour
         float steeringAngle = steeringInput * maxSteerAngle * steeringCurve.Evaluate(speed);
         if (slipAngle < 120f && movingDirection>0f )
         {
-            steeringAngle += Vector3.SignedAngle(transform.forward*0.1f, playerRB.velocity * 0.1f + transform.forward, Vector3.up);
+            steeringAngle += Vector3.SignedAngle(transform.forward * 0.1f, playerRB.velocity * 0.1f + transform.forward * 1.5f, Vector3.up);
         }
         steeringAngle = Mathf.Clamp(steeringAngle, -90f, 90f);
         colliders.FRWheel.steerAngle = steeringAngle;
