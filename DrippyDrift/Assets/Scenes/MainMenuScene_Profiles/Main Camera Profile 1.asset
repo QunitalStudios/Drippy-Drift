@@ -157,19 +157,19 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3
+    value: 2
   threshold:
     overrideState: 1
     value: 1
   softKnee:
     overrideState: 1
-    value: 0.574
+    value: 1
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
     overrideState: 1
-    value: 8.11
+    value: 10
   anamorphicRatio:
     overrideState: 0
     value: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 0.371529, g: 0.57205963, b: 0.6509434, a: 1}
+    value: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
   hueShift:
     overrideState: 0
     value: 0
