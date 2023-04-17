@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,11 @@ public class CarControllerTEST : MonoBehaviour
     [SerializeField] private TrailRenderer trail1;
     [SerializeField] private TrailRenderer trail2;
 
+    public float brzina;
+    public float MaxBrzina;
+    private float brzinaClamped;
+    public int isEngineRunning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,8 +61,12 @@ public class CarControllerTEST : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
+        brzina = colliders.RRWheel.rpm * colliders.RRWheel.radius * 2f * Mathf.PI/100;
         speed = playerRB.velocity.magnitude;
         currentSpeed = playerRB.velocity.magnitude * 2;
+
+        //
+        brzinaClamped = Mathf.Lerp(brzinaClamped, brzina, Time.deltaTime);
 
         isGroundedRR = Physics.Raycast(colliders.RRWheel.transform.position, -Vector3.up, 0.5f);
         isGroundedRL = Physics.Raycast(colliders.RLWheel.transform.position, -Vector3.up, 0.5f);
@@ -198,10 +208,19 @@ public class CarControllerTEST : MonoBehaviour
     }
     void ApplyMotor()
     {
-
-        colliders.RRWheel.motorTorque = motorPower * gasInput;
-        colliders.RLWheel.motorTorque = motorPower * gasInput;
-
+        if (isEngineRunning > 1)
+        {
+            if (currentSpeed < MaxBrzina)
+            {
+                colliders.RRWheel.motorTorque = motorPower * gasInput;
+                colliders.RLWheel.motorTorque = motorPower * gasInput;
+            }
+            else
+            {
+                colliders.RRWheel.motorTorque = 0;
+                colliders.RLWheel.motorTorque = 0;
+            }
+        }        
     }
     void ApplySteering()
     {
@@ -231,6 +250,12 @@ public class CarControllerTEST : MonoBehaviour
         coll.GetWorldPose(out position, out quat);
         wheelMesh.transform.position = position;
         wheelMesh.transform.rotation = quat;
+    }
+
+    public float GetSpeedRatio()
+    {
+        var gas = Mathf.Clamp(gasInput, 0.7f, 1f);
+        return currentSpeed*gas/MaxBrzina;
     }
 
     private void LightController()
